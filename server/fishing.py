@@ -25,6 +25,10 @@ def choice():
 def win():
     return render_template('win.html')
 
+@app.route('/lose.html')
+def lose():
+    return render_template('lose.html')
+
 # @app.errorhandler(404)
 # def not_found(error): resp = make_response(render_template('error.html'), 404)
 #      # return resp
