@@ -9,12 +9,6 @@ def main():
 def iconex():
     return render_template('iconex.html')
 
-# @app.route('/FishingCON.pdf')
-# def pdf():
-#     return render_template('pdf.html')
-# UPLOAD_FOLDER = '/templates/FishingCON.pdf'
-# ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'jpg'])
-
 @app.route('/elements.html')
 def ele():
     return render_template('elements.html')
@@ -26,6 +20,10 @@ def fish():
 @app.route('/generic.html')
 def choice():
     return render_template('generic.html')
+
+@app.route('/win.html')
+def win():
+    return render_template('win.html')
 
 # @app.errorhandler(404)
 # def not_found(error): resp = make_response(render_template('error.html'), 404)
