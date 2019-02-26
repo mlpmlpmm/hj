@@ -52,7 +52,7 @@ class DiceRoll(IconScoreBase):
         if (game_value == _choice): # 랜덤값과 사용자가 선택한 값이 같으면
             # 이겼을때 2배 보상
 
-            payout = int(2 * amount)
+            payout = int(3 * amount)
             self._game_result[hash_time] = 1
             Logger.warning("이김")
             self.icx.transfer(self.msg.sender, payout)

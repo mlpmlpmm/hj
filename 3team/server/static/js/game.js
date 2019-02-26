@@ -21,6 +21,7 @@ document.getElementById('redFish').addEventListener('click', async () => {
     var callTransactionBuilder = new IconBuilder.CallTransactionBuilder; // send transation
     var callTransactionData = callTransactionBuilder
         .from(address)
+
         .to(score_to)
         .nid(IconConverter.toBigNumber(3))
         .value(IconAmount.of(Number(1), IconAmount.Unit.ICX).toLoop())
@@ -63,52 +64,7 @@ document.getElementById('skyFish').addEventListener('click', async () => {
     // console.log("price: "+price);
 
 
-    var callTransactionBuilder = new IconBuilder.CallTransactionBuilder;
-    var callTransactionData = callTransactionBuilder
-        .from(address)
-        .to(score_to)
-        .nid(IconConverter.toBigNumber(3))
-        .value(IconAmount.of(Number(1), IconAmount.Unit.ICX).toLoop())
-        .timestamp((new Date()).getTime() * 1000)
-        .stepLimit(IconConverter.toBigNumber(10000000))
-        .version(IconConverter.toBigNumber(3))
-        .method('game_start')
-        .params({
-            "_choice": choice,
-            "_time": currenthx8cadb82ff9a11c4f45fef36c0d53cca177fe33d3
-        })
-        .build();
-
-    var score_sdk = JSON.stringify( {
-        "jsonrpc":"2.0",
-        "method":"icx_sendTransaction",
-        "params":IconConverter.toRawTransaction(callTransactionData),
-        "id":50889
-    })
-
-    var parsed = JSON.parse(score_sdk)
-    console.log("parsed: "+parsed);
-    window.dispatchEvent(new CustomEvent('ICONEX_RELAY_REQUEST', {
-        detail: {
-            type: 'REQUEST_JSON-RPC',
-            payload: parsed,
-        }
-    }));
-});
-
-document.getElementById('greenFish').addEventListener('click', async () => {
-    console.log("greenFish");
-
-    var choice = String(2);
-    var date = new Date();
-    current = String(date.getTime());
-    console.log("greenFish / current: "+current);
-
-    // var price = Number(price_value);
-    // console.log("price: "+price);
-
-
-    var callTransactionBuilder = new IconBuilder.CallTransactionBuilder;
+    var callTransactionBuilder = new IconBuilder.CallTransactionBuilder; // send transation
     var callTransactionData = callTransactionBuilder
         .from(address)
         .to(score_to)
@@ -133,13 +89,57 @@ document.getElementById('greenFish').addEventListener('click', async () => {
 
     var parsed = JSON.parse(score_sdk)
     console.log("parsed: "+parsed);
-    window.dispatchEvent(new CustomEvent('ICONEX_RELAY_REQUEST', {
+    window.dispatchEvent(new CustomEvent('ICONEX_RELAY_REQUEST', { //
         detail: {
             type: 'REQUEST_JSON-RPC',
             payload: parsed,
         }
     }));
+});
 
+document.getElementById('greenFish').addEventListener('click', async () => {
+    console.log("greenFish");
+
+var choice = String(2);
+    var date = new Date();
+    current = String(date.getTime());
+    console.log("greenFish / current: "+current);
+
+    // var price = Number(price_value);
+    // console.log("price: "+price);
+
+
+    var callTransactionBuilder = new IconBuilder.CallTransactionBuilder; // send transation
+    var callTransactionData = callTransactionBuilder
+        .from(address)
+        .to(score_to)
+        .nid(IconConverter.toBigNumber(3))
+        .value(IconAmount.of(Number(1), IconAmount.Unit.ICX).toLoop())
+        .timestamp((new Date()).getTime() * 1000)
+        .stepLimit(IconConverter.toBigNumber(10000000))
+        .version(IconConverter.toBigNumber(3))
+        .method('game_start')
+        .params({
+            "_choice": choice,
+            "_time": current
+        })
+        .build();
+
+    var score_sdk = JSON.stringify( {
+        "jsonrpc":"2.0",
+        "method":"icx_sendTransaction",
+        "params":IconConverter.toRawTransaction(callTransactionData),
+        "id":50889
+    })
+
+    var parsed = JSON.parse(score_sdk)
+    console.log("parsed: "+parsed);
+    window.dispatchEvent(new CustomEvent('ICONEX_RELAY_REQUEST', { //
+        detail: {
+            type: 'REQUEST_JSON-RPC',
+            payload: parsed,
+        }
+    }));
 });
 
 window.addEventListener("ICONEX_RELAY_RESPONSE", eventHandler, false);
@@ -159,6 +159,7 @@ function eventHandler(event) {
             location.href = "./fish.html?address="+address+","+current;
             break;
 
+//            # self._game_result[hash_time] = 1
         case "CANCEL_JSON-RPC":
             console.log("CANCEL_JSON-RPC");
             break;
@@ -175,7 +176,7 @@ function eventHandler(event) {
 }
 
 
-//
+
 //async function gameResult() {
 //
 //    if(current === '') {
@@ -184,8 +185,9 @@ function eventHandler(event) {
 //        console.log("enter else!!");
 //
 //        var callBuilder = new IconBuilder.CallBuilder;
-//        var readOnlyData = callBuilder
-//                .from(address)hx8cadb82ff9a11c4f45fef36c0d53cca177fe33d3
+//        var readOnlyData = callBuild
+//             self._game_result[hash_time] = 1er
+//                .from(address)
 //                .to(score_to)
 //                .method("getGameResult")
 //                .params({
@@ -208,22 +210,22 @@ function eventHandler(event) {
 //                payload: parsed,
 //            }
 //        }));
-//
-//
-////        var gameResult = await IconService.icx_call(parsed).  ~œ();
-////        var gameResult = await IconService.call(parsed).execute();
-////        console.log("gameResult: "+gameResult);
-//
-//
-////        if(gameResult == 1) {
-////            window.open("../../templates/win.html", "a", "width=500, height=500, left=520, top=100");
-////            console.log("win, You earned an icx.");
-////        } else if(gameResult == 0) {
-////            window.open(".../../templates/lose.html", "a", "width=500, height=500, left=520, top=100");
-////            console.log("lose, At the  time.");
-////        } else {
-////            alert("에러!!")
-////        }
+
+
+//        var gameResult = await IconService.icx_call(parsed).  ~œ();
+//        var gameResult = await IconService.call(parsed).execute();
+//        console.log("gameResult: "+gameResult);
+
+
+//        if(gameResult == 1) {
+//            window.open("../../templates/win.html", "a", "width=500, height=500, left=520, top=100");
+//            console.log("win, You earned an icx.");
+//        } else if(gameResult == 0) {
+//            window.open(".../../templates/lose.html", "a", "width=500, height=500, left=520, top=100");
+//            console.log("lose, At the  time.");
+//        } else {
+//            alert("에러!!")
+//        }
 //    }
 //}
 //
@@ -231,7 +233,7 @@ function eventHandler(event) {
 //function sleep (delay) {
 //    var start = new Date().getTime();
 //    while (new Date().getTime() < start + delay);
-}
+//}
 
 // get방식으로 넘어온 address 를 리턴함
 function getParameterByAddress(address) {

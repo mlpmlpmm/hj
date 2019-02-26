@@ -8,7 +8,7 @@ class DiceRoll(IconScoreBase):
     def __init__(self, db: IconScoreDatabase) -> None:
         super().__init__(db)
         # 게임 결과 저장 db
-        self._game_result = DictDB("GAME_REUSLT", db, value_type=int)
+        self._game_result = DictDB("GAME_RESULT", db, value_type=int)
 
     def on_install(self) -> None:
         super().on_install()
@@ -29,7 +29,7 @@ class DiceRoll(IconScoreBase):
         # 결과 database
         hash_time = sha3_256(str(_time).encode())
 
-        # if amount <= 8:
+        # if amount <= 3:
         #     Logger.debug(f'Betting amount {amount} out of range.', TAG)
         #     revert(f'Betting amount {amount} out of range.')
         #
@@ -51,19 +51,23 @@ class DiceRoll(IconScoreBase):
 
         if (game_value == _choice): # 랜덤값과 사용자가 선택한 값이 같으면
             # 이겼을때 2배 보상
-            payout = int(2* amount)
+
+            payout = int(2 * amount)
             self._game_result[hash_time] = 1
             Logger.warning("이김")
+            self.icx.transfer(self.msg.sender, payout)
+            Logger.warning(f"self._game_result[hash_time]: {self._game_result[hash_time]}", TAG)
+
         else:
             # 졌을때 0.2배 보상
             payout = int(0.2 * amount)
             self._game_result[hash_time] = 0
             Logger.warning("짐")
 
-        # self._game_result[hash_time] = 1
-        # 돈 보내기
-        self.icx.transfer(self.msg.sender, self.msg.value)
-        Logger.warning(f"self._game_result[hash_time]: {self._game_result[hash_time]}", TAG)
+            # self._game_result[hash_time] = 1
+            # 돈 보내기
+            self.icx.transfer(self.msg.sender, payout)
+            Logger.warning(f"self._game_result[hash_time]: {self._game_result[hash_time]}", TAG)
 
 
     @external

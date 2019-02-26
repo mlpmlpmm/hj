@@ -52,29 +52,29 @@ def fish():
         "_time": current,
     }
 
-    return render_template('fish.html')
+    # return render_template('fish.html')
 
-    # sleep(10)
-    #
-    # Inquiry = CallBuilder() \
-    #     .from_(address) \
-    #     .to(_score_address) \
-    #     .method("getGameResult") \
-    #     .params(params) \
-    #     .build()
-    #
-    # # print("Inquiry: ", Inquiry)
-    #
-    # # Sends the call request
-    # #string 0x0, 0x1
-    # response = int(icon_service.call(Inquiry)[-1])
-    # print("response: ", response)
-    # print("response: ", type(response))
-    #
-    # if(response==1):
-    #     return render_template('win.html')
-    # else:
-    #     return render_template('lose.html')
+    sleep(10)
+
+    Inquiry = CallBuilder() \
+        .from_(address) \
+        .to(_score_address) \
+        .method("getGameResult") \
+        .params(params) \
+        .build()
+
+    # print("Inquiry: ", Inquiry)
+
+    # Sends the call request
+    #string 0x0, 0x1
+    response = int(icon_service.call(Inquiry)[-1])
+    print("response: ", response)
+    print("response: ", type(response))
+
+    if(response==1):
+        return render_template('win.html')
+    else:
+        return render_template('lose.html')
 
 
 # 게임종료 및 재경기 의사
@@ -95,7 +95,7 @@ def lose():
 
 @app.errorhandler(404)
 def not_found(error): resp = make_response(render_template('error.html'), 404)
-     # return resp
+    # return resp
 def err():
     return 'error'
 

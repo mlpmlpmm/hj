@@ -1,0 +1,123 @@
+[ERROR|logger.py:360] 2019-02-25 03:01:05,696 > [IconService] Out of balance
+Traceback (most recent call last):
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_service_engine.py", line 616, in _handle_icx_send_transaction
+    tx_result.score_address = self._handle_score_invoke(context, to, params)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_service_engine.py", line 792, in _handle_score_invoke
+    self._icon_score_engine.invoke(context, to, data_type, data)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_score_engine.py", line 76, in invoke
+    self._call(context, icon_score_address, data)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_score_engine.py", line 136, in _call
+    return external_func(func_name=func_name, arg_params=[], kw_params=converted_params)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_score_base.py", line 397, in __external_call
+    ret = score_func(*arg_params, **kw_params)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_score_base.py", line 245, in __wrapper
+    res = func(calling_obj, *args, **kwargs)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_score_base.py", line 268, in __wrapper
+    res = func(calling_obj, *args, **kwargs)
+  File "./.score/0135a03f35326798ca7de6b979a11cca86b81c5e2f/0x4d2301faad51912dee8f696858ba16ef9bbcdea6fbbf0668310cc1132d40f839/diceroll.py", line 58, in game_start
+    self.icx.transfer(self.msg.sender, payout)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icx.py", line 42, in transfer
+    self._context.internal_call.icx_transfer_call(self._address, addr_to, amount)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/internal_call.py", line 49, in icx_transfer_call
+    self._call(addr_from, addr_to, None, (), {}, amount)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/internal_call.py", line 86, in _call
+    raise e
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/internal_call.py", line 75, in _call
+    self.icx_engine.transfer(self.__context, addr_from, addr_to, amount)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icx/icx_engine.py", line 242, in transfer
+    return self._transfer(context, from_, to, amount)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icx/icx_engine.py", line 262, in _transfer
+    from_account.withdraw(amount)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icx/icx_account.py", line 200, in withdraw
+    raise InvalidParamsException('Out of balance')
+iconservice.base.exception.InvalidParamsException: Out of balance (32602)
+[ERROR|logger.py:360] 2019-02-25 03:08:02,210 > [IconService] Out of balance: balance(800459900000000000000000000) < value(1000000000000000078291540404596243842305360299886116864) + fee(0) (32600)
+Traceback (most recent call last):
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_inner_service.py", line 226, in _validate_transaction
+    self._icon_service_engine.validate_transaction(converted_request)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_service_engine.py", line 506, in validate_transaction
+    self._icon_pre_validator.execute(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 66, in execute
+    self._validate_transaction_v3(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 144, in _validate_transaction_v3
+    self._check_from_can_charge_fee_v3(params, step_price)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 171, in _check_from_can_charge_fee_v3
+    self._check_balance(from_, value, fee)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 254, in _check_balance
+    raise InvalidRequestException(f'Out of balance: balance({balance}) < value({value}) + fee({fee})')
+iconservice.base.exception.InvalidRequestException: Out of balance: balance(800459900000000000000000000) < value(1000000000000000078291540404596243842305360299886116864) + fee(0) (32600)
+[ERROR|logger.py:360] 2019-02-25 03:08:12,884 > [IconService] Out of balance: balance(800459900000000000000000000) < value(1000000000000000044885712678075916785549312) + fee(0) (32600)
+Traceback (most recent call last):
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_inner_service.py", line 226, in _validate_transaction
+    self._icon_service_engine.validate_transaction(converted_request)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_service_engine.py", line 506, in validate_transaction
+    self._icon_pre_validator.execute(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 66, in execute
+    self._validate_transaction_v3(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 144, in _validate_transaction_v3
+    self._check_from_can_charge_fee_v3(params, step_price)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 171, in _check_from_can_charge_fee_v3
+    self._check_balance(from_, value, fee)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 254, in _check_balance
+    raise InvalidRequestException(f'Out of balance: balance({balance}) < value({value}) + fee({fee})')
+iconservice.base.exception.InvalidRequestException: Out of balance: balance(800459900000000000000000000) < value(1000000000000000044885712678075916785549312) + fee(0) (32600)
+[ERROR|logger.py:360] 2019-02-25 03:08:22,031 > [IconService] Out of balance: balance(800459900000000000000000000) < value(9999999999999999635896294965248) + fee(0) (32600)
+Traceback (most recent call last):
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_inner_service.py", line 226, in _validate_transaction
+    self._icon_service_engine.validate_transaction(converted_request)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_service_engine.py", line 506, in validate_transaction
+    self._icon_pre_validator.execute(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 66, in execute
+    self._validate_transaction_v3(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 144, in _validate_transaction_v3
+    self._check_from_can_charge_fee_v3(params, step_price)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 171, in _check_from_can_charge_fee_v3
+    self._check_balance(from_, value, fee)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 254, in _check_balance
+    raise InvalidRequestException(f'Out of balance: balance({balance}) < value({value}) + fee({fee})')
+iconservice.base.exception.InvalidRequestException: Out of balance: balance(800459900000000000000000000) < value(9999999999999999635896294965248) + fee(0) (32600)
+[ERROR|logger.py:360] 2019-02-25 03:08:28,285 > [IconService] Out of balance: balance(800459900000000000000000000) < value(1000000000000000013287555072) + fee(0) (32600)
+Traceback (most recent call last):
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_inner_service.py", line 226, in _validate_transaction
+    self._icon_service_engine.validate_transaction(converted_request)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_service_engine.py", line 506, in validate_transaction
+    self._icon_pre_validator.execute(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 66, in execute
+    self._validate_transaction_v3(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 144, in _validate_transaction_v3
+    self._check_from_can_charge_fee_v3(params, step_price)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 171, in _check_from_can_charge_fee_v3
+    self._check_balance(from_, value, fee)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 254, in _check_balance
+    raise InvalidRequestException(f'Out of balance: balance({balance}) < value({value}) + fee({fee})')
+iconservice.base.exception.InvalidRequestException: Out of balance: balance(800459900000000000000000000) < value(1000000000000000013287555072) + fee(0) (32600)
+[ERROR|logger.py:360] 2019-02-25 03:09:13,666 > [IconService] Out of balance: balance(800459900000000000000000000) < value(1000000000000000013287555072) + fee(0) (32600)
+Traceback (most recent call last):
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_inner_service.py", line 226, in _validate_transaction
+    self._icon_service_engine.validate_transaction(converted_request)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_service_engine.py", line 506, in validate_transaction
+    self._icon_pre_validator.execute(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 66, in execute
+    self._validate_transaction_v3(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 144, in _validate_transaction_v3
+    self._check_from_can_charge_fee_v3(params, step_price)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 171, in _check_from_can_charge_fee_v3
+    self._check_balance(from_, value, fee)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 254, in _check_balance
+    raise InvalidRequestException(f'Out of balance: balance({balance}) < value({value}) + fee({fee})')
+iconservice.base.exception.InvalidRequestException: Out of balance: balance(800459900000000000000000000) < value(1000000000000000013287555072) + fee(0) (32600)
+[ERROR|logger.py:360] 2019-02-25 03:10:21,194 > [IconService] Out of balance: balance(800459900000000000000000000) < value(1000000000000000013287555072) + fee(0) (32600)
+Traceback (most recent call last):
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_inner_service.py", line 226, in _validate_transaction
+    self._icon_service_engine.validate_transaction(converted_request)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/icon_service_engine.py", line 506, in validate_transaction
+    self._icon_pre_validator.execute(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 66, in execute
+    self._validate_transaction_v3(params, step_price, minimum_step)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 144, in _validate_transaction_v3
+    self._check_from_can_charge_fee_v3(params, step_price)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 171, in _check_from_can_charge_fee_v3
+    self._check_balance(from_, value, fee)
+  File "/home/hyunji/PycharmProjects/3team/venv/lib/python3.6/site-packages/iconservice/iconscore/icon_pre_validator.py", line 254, in _check_balance
+    raise InvalidRequestException(f'Out of balance: balance({balance}) < value({value}) + fee({fee})')
+iconservice.base.exception.InvalidRequestException: Out of balance: balance(800459900000000000000000000) < value(1000000000000000013287555072) + fee(0) (32600)
